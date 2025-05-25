@@ -38,6 +38,8 @@
             this.buscarComprobateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarPorFechaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.cOMPRASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +57,7 @@
             // vENDERToolStripMenuItem
             // 
             this.vENDERToolStripMenuItem.Name = "vENDERToolStripMenuItem";
-            this.vENDERToolStripMenuItem.Size = new System.Drawing.Size(76, 26);
+            this.vENDERToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.vENDERToolStripMenuItem.Text = "VENTAS";
             this.vENDERToolStripMenuItem.Click += new System.EventHandler(this.vENDERToolStripMenuItem_Click);
             // 
@@ -63,7 +65,8 @@
             // 
             this.aDMINISTRACIÓNToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientesToolStripMenuItem,
-            this.productosToolStripMenuItem});
+            this.productosToolStripMenuItem,
+            this.proveedoresToolStripMenuItem});
             this.aDMINISTRACIÓNToolStripMenuItem.Name = "aDMINISTRACIÓNToolStripMenuItem";
             this.aDMINISTRACIÓNToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
             this.aDMINISTRACIÓNToolStripMenuItem.Text = "ADMINISTRACIÓN";
@@ -88,7 +91,7 @@
             this.buscarComprobateToolStripMenuItem,
             this.consultarPorFechaToolStripMenuItem});
             this.rEPORTESToolStripMenuItem.Name = "rEPORTESToolStripMenuItem";
-            this.rEPORTESToolStripMenuItem.Size = new System.Drawing.Size(91, 26);
+            this.rEPORTESToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
             this.rEPORTESToolStripMenuItem.Text = "REPORTES";
             // 
             // buscarComprobateToolStripMenuItem
@@ -111,12 +114,26 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vENDERToolStripMenuItem,
             this.aDMINISTRACIÓNToolStripMenuItem,
-            this.rEPORTESToolStripMenuItem});
+            this.rEPORTESToolStripMenuItem,
+            this.cOMPRASToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(762, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // cOMPRASToolStripMenuItem
+            // 
+            this.cOMPRASToolStripMenuItem.Name = "cOMPRASToolStripMenuItem";
+            this.cOMPRASToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
+            this.cOMPRASToolStripMenuItem.Text = "COMPRAS";
+            // 
+            // proveedoresToolStripMenuItem
+            // 
+            this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
+            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.proveedoresToolStripMenuItem.Text = "Proveedores";
+            this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
             // FormInicio
             // 
@@ -149,6 +166,8 @@
         private System.Windows.Forms.ToolStripMenuItem buscarComprobateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultarPorFechaToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem cOMPRASToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
     }
 }
 

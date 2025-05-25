@@ -56,5 +56,10 @@ namespace Sistema_de_ventas_y_stock___BD.CP
             objetoCliente.mostrarClientes(dgvCliente);
             objetoCliente.limpiarCampos(txtIDC, txtNomYAp, txtDni, txtTel, txtEmail);
         }
+
+        private void FormClientes_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

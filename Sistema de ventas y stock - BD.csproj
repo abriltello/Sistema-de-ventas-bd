@@ -98,11 +98,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CD\ModeloProveedor.cs" />
     <Compile Include="CD\Conexion.cs" />
+    <Compile Include="CL\Compra.cs" />
+    <Compile Include="CL\Proveedor.cs" />
     <Compile Include="CL\Cliente.cs" />
     <Compile Include="CL\Producto.cs" />
     <Compile Include="CL\Reporte.cs" />
     <Compile Include="CL\Venta.cs" />
+    <Compile Include="CP\FormProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP\FormProveedor.Designer.cs">
+      <DependentUpon>FormProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP\FormDetalleCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP\FormDetalleCompra.Designer.cs">
+      <DependentUpon>FormDetalleCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP\FormPorVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +161,9 @@
     <EmbeddedResource Include="CP\FormClientes.resx">
       <DependentUpon>FormClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP\FormDetalleCompra.resx">
+      <DependentUpon>FormDetalleCompra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP\FormFactura.resx">
       <DependentUpon>FormFactura.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP\FormProducto.resx">
       <DependentUpon>FormProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP\FormProveedor.resx">
+      <DependentUpon>FormProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP\FormReportePorFecha.resx">
       <DependentUpon>FormReportePorFecha.cs</DependentUpon>

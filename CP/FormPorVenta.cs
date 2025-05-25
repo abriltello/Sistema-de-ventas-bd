@@ -94,5 +94,10 @@ namespace Sistema_de_ventas_y_stock___BD.CP
             objetoVenta.mostrarUltimaFactura(lblUltimaFac);
 
         }
+
+        private void FormPorVenta_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

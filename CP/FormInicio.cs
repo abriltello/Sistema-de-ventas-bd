@@ -42,5 +42,11 @@ namespace Sistema_de_ventas_y_stock___BD
             CP.FormReportePorFecha objetoformReportePorFecha = new CP.FormReportePorFecha();
             objetoformReportePorFecha.Show();
         }
+
+        private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CP.FormProveedor objetoformProveedor = new CP.FormProveedor();
+            objetoformProveedor.Show();
+        }
     }
 }
