@@ -52,7 +52,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.lblTotalF = new System.Windows.Forms.Label();
-            this.txtBuscarF = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -62,7 +62,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtBuscarF);
+            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.btnBuscarF);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(208, 51);
@@ -88,9 +88,9 @@
             this.label1.Font = new System.Drawing.Font("Arial Unicode MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(6, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(184, 23);
+            this.label1.Size = new System.Drawing.Size(171, 23);
             this.label1.TabIndex = 1;
-            this.label1.Text = "ID DE LA FACTURA:";
+            this.label1.Text = "Nombre del cliente:";
             // 
             // pictureBox1
             // 
@@ -301,12 +301,13 @@
             this.lblTotalF.TabIndex = 16;
             this.lblTotalF.Text = "$";
             // 
-            // txtBuscarF
+            // comboBox1
             // 
-            this.txtBuscarF.Location = new System.Drawing.Point(214, 19);
-            this.txtBuscarF.Name = "txtBuscarF";
-            this.txtBuscarF.Size = new System.Drawing.Size(354, 22);
-            this.txtBuscarF.TabIndex = 3;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(204, 18);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(364, 24);
+            this.comboBox1.TabIndex = 3;
             // 
             // FormFactura
             // 
@@ -330,6 +331,7 @@
             this.Name = "FormFactura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Buscar Factura";
+            this.Load += new System.EventHandler(this.FormFactura_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -367,6 +369,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblTotalF;
-        private System.Windows.Forms.TextBox txtBuscarF;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

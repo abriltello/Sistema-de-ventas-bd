@@ -22,4 +22,3 @@ namespace Sistema_de_ventas_y_stock___BD.CD
         public string Email { get => email; set => email = value; }
     }
 }
-

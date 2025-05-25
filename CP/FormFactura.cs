@@ -20,8 +20,15 @@ namespace Sistema_de_ventas_y_stock___BD.CP
         private void btnBuscarF_Click(object sender, EventArgs e)
         {
             CL.Reporte objetoReporte = new CL.Reporte();
-            objetoReporte.buscarFacturaYDatosCliente(txtBuscarF, lblNFact, lblFechaVenta, lblNomYAp, lblDniC, lblTelC, lblEmailC);
-            objetoReporte.buscarFacturaYDatosProductos(txtBuscarF, dataGridView1, lblTotalF);
+            objetoReporte.buscarFacturaYDatosPorCliente(comboBox1, lblNFact, lblFechaVenta, lblNomYAp, lblDniC, lblTelC, lblEmailC, dataGridView1, lblTotalF);
+            
+        }
+
+        private void FormFactura_Load(object sender, EventArgs e)
+        {
+            CL.Reporte objetoReporte = new CL.Reporte();
+            objetoReporte.cargarClientes(comboBox1);
+
         }
     }
 }

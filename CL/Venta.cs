@@ -342,6 +342,36 @@ namespace Sistema_de_ventas_y_stock___BD.CL
             }
         }
 
+        public void cargarClientesEnComboBox(ComboBox comboClientes)
+        {
+            CD.Conexion objetoConexion = new CD.Conexion();
+
+            string consulta = "SELECT idCliente, CONCAT(nombres, ' (DNI: ', dni, ')') AS NombreCompleto FROM cliente;";
+
+            try
+            {
+                MySqlConnection conexion = objetoConexion.Conectar();
+
+                MySqlCommand comando = new MySqlCommand(consulta, conexion);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                comboClientes.DataSource = dt;
+                comboClientes.DisplayMember = "NombreCompleto"; // lo que se ve en la lista
+                comboClientes.ValueMember = "idCliente";        // el ID que se usará internamente
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar clientes: " + ex.ToString());
+            }
+            finally
+            {
+                objetoConexion.Desconectar();
+            }
+        }
+
+
         //VENTA
         public void realizarVenta(DataGridView tablaCarritoVenta)
         {
