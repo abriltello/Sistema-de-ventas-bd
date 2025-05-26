@@ -106,6 +106,12 @@
     <Compile Include="CL\Producto.cs" />
     <Compile Include="CL\Reporte.cs" />
     <Compile Include="CL\Venta.cs" />
+    <Compile Include="CP\FormFacturaCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP\FormFacturaCompra.Designer.cs">
+      <DependentUpon>FormFacturaCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP\FormProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP\FormFactura.resx">
       <DependentUpon>FormFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP\FormFacturaCompra.resx">
+      <DependentUpon>FormFacturaCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP\FormInicio.resx">
       <DependentUpon>FormInicio.cs</DependentUpon>

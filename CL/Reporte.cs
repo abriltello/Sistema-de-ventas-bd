@@ -42,95 +42,42 @@ namespace Sistema_de_ventas_y_stock___BD.CL
             }
         }
 
-        public void buscarFacturaPorCliente(ComboBox comboClientes, Label lblFactura, Label lblFecha, Label lblNombre, Label lblDni, Label lblTelefono, Label lblEmail, DataGridView dgvProductos, Label lblTotal)
+
+
+        public void buscarFacturaYDatosCliente(TextBox numeroFactura, Label numeroFacturaCompraEncontrado, Label fechaFacturaCompraEncontrado,
+                                               Label nombreProveedorEncontrado, Label direccionProveedorEncontrado, Label telefonoProveedorEncontrado, Label emailProveedorEncontrado)
         {
             CD.Conexion objetoConexion = new CD.Conexion();
 
-            try
-            {
-                int idCliente = Convert.ToInt32(comboClientes.SelectedValue);
-
-                MySqlConnection conexion = objetoConexion.Conectar();
-
-                // 1. Obtener la factura más reciente del cliente
-                string sqlFactura = "SELECT idFactura, fechaFactura FROM factura WHERE fkCliente = @idcliente ORDER BY fechaFactura DESC LIMIT 1;";
-                MySqlCommand cmdFactura = new MySqlCommand(sqlFactura, conexion);
-                cmdFactura.Parameters.AddWithValue("@idcliente", idCliente);
-                MySqlDataReader readerFactura = cmdFactura.ExecuteReader();
-
-                if (readerFactura.Read())
-                {
-                    string idFactura = readerFactura["idFactura"].ToString();
-                    string fecha = Convert.ToDateTime(readerFactura["fechaFactura"]).ToString("dd/MM/yyyy");
-                    lblFactura.Text = idFactura;
-                    lblFecha.Text = fecha;
-                    readerFactura.Close();
-
-                    // 2. Obtener datos del cliente
-                    string sqlCliente = "SELECT nombres, dni, telefono, email FROM cliente WHERE idcliente = @idcliente;";
-                    MySqlCommand cmdCliente = new MySqlCommand(sqlCliente, conexion);
-                    cmdCliente.Parameters.AddWithValue("@idcliente", idCliente);
-                    MySqlDataReader readerCliente = cmdCliente.ExecuteReader();
-
-                    if (readerCliente.Read())
-                    {
-                        lblNombre.Text = readerCliente["nombres"].ToString();
-                        lblDni.Text = readerCliente["dni"].ToString();
-                        lblTelefono.Text = readerCliente["telefono"].ToString();
-                        lblEmail.Text = readerCliente["email"].ToString();
-                    }
-                    readerCliente.Close();
-
-                }
-                else
-                {
-                    MessageBox.Show("No se encontró ninguna factura para este cliente.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al buscar factura: " + ex.ToString());
-            }
-            finally
-            {
-                objetoConexion.Desconectar();
-            }
-        }
-
-        public void buscarFacturaYDatosCliente(TextBox numeroFactura, Label numeroFacturaEncontrado, Label fechaFacturaEncontrado,
-                                               Label nombreClienteEncontrado, Label dniClienteEncontrado, Label telefonoClienteEncontrado, Label emailClienteEncontrado)
-        {
-            CD.Conexion objetoConexion = new CD.Conexion();
-
-            string sql = "select factura.idFactura, factura.fechaFactura, cliente.nombres, cliente.dni, cliente.telefono, cliente.email from factura " + " INNER JOIN cliente ON cliente.idcliente = factura.fkCliente WHERE factura.idFactura = @idFactura;";
+            string sql = "select facturacompra.idFacturaCompra, facturacompra.fechaFacturaCompra, proveedor.nombre, proveedor.direccion, proveedor.telefono, proveedor.email from facturacompra " + " INNER JOIN proveedor ON proveedor.idproveedor = facturacompra.fkProveedor WHERE facturacompra.idFacturaCompra = @idFacturaCompra;";
 
             try
             {
                 MySqlConnection conexion = objetoConexion.Conectar();
 
                 MySqlCommand comando = new MySqlCommand(sql, conexion);
-                comando.Parameters.AddWithValue("@idFactura", int.Parse(numeroFactura.Text));
+                comando.Parameters.AddWithValue("@idFacturaCompra", int.Parse(numeroFactura.Text));
 
                 MySqlDataReader reader = comando.ExecuteReader();
 
                 if (reader.Read())
                 {
-                    numeroFacturaEncontrado.Text = reader["idFactura"].ToString();
-                    fechaFacturaEncontrado.Text = DateTime.Parse(reader["fechaFactura"].ToString()).ToString("dd-MM-yyyy");
-                    nombreClienteEncontrado.Text = reader["nombres"].ToString();
-                    dniClienteEncontrado.Text = reader["dni"].ToString();
-                    telefonoClienteEncontrado.Text = reader["telefono"].ToString();
-                    emailClienteEncontrado.Text = reader["email"].ToString();
+                    numeroFacturaCompraEncontrado.Text = reader["idFacturaCompra"].ToString();
+                    fechaFacturaCompraEncontrado.Text = DateTime.Parse(reader["fechaFacturaCompra"].ToString()).ToString("dd-MM-yyyy");
+                    nombreProveedorEncontrado.Text = reader["nombre"].ToString();
+                    direccionProveedorEncontrado.Text = reader["direccion"].ToString();
+                    telefonoProveedorEncontrado.Text = reader["telefono"].ToString();
+                    emailProveedorEncontrado.Text = reader["email"].ToString();
 
                 }
                 else
                 {
-                    numeroFacturaEncontrado.Text = "----";
-                    fechaFacturaEncontrado.Text = "----";
-                    nombreClienteEncontrado.Text = "----";
-                    dniClienteEncontrado.Text = "----";
-                    telefonoClienteEncontrado.Text = "----";
-                    emailClienteEncontrado.Text = "----";
+                    numeroFacturaCompraEncontrado.Text = "----";
+                    fechaFacturaCompraEncontrado.Text = "----";
+                    nombreProveedorEncontrado.Text = "----";
+                    direccionProveedorEncontrado.Text = "----";
+                    telefonoProveedorEncontrado.Text = "----";
+                    emailProveedorEncontrado.Text = "----";
 
                     MessageBox.Show("No se encontró la factura con el número: ");
                 }
@@ -244,17 +191,10 @@ namespace Sistema_de_ventas_y_stock___BD.CL
             }
         }
 
-
-
-
-
-
-
-
         public void buscarFacturaYDatosProductos(TextBox numeroFactura, DataGridView tablaTotalProductos, Label total)
         {
             CD.Conexion objetoConexion = new CD.Conexion();
-           
+
 
             DataTable modelo = new DataTable();
 
@@ -271,12 +211,12 @@ namespace Sistema_de_ventas_y_stock___BD.CL
 
             try
             {
-                string sql = "select  producto.nombre, detalle.cantidad, detalle.precioVenta from detalle " + "INNER JOIN factura ON factura.idFactura = detalle.fkFactura " + "INNER JOIN producto ON producto.idproducto = detalle.fkProducto " + "WHERE factura.idFactura = @idFactura;";
+                string sql = "select  producto.nombre, detallecompra.cantidad, detallecompra.precioCompra from detallecompra " + "INNER JOIN facturacompra ON facturacompra.idFacturaCompra = detallecompra.fkFacturaCompra " + "INNER JOIN producto ON producto.idproducto = detallecompra.fkProducto " + "WHERE facturacompra.idFacturaCompra = @idFacturaCompra;";
 
                 MySqlConnection conexion = objetoConexion.Conectar();
 
                 MySqlCommand comando = new MySqlCommand(sql, conexion);
-                comando.Parameters.AddWithValue("@idFactura", int.Parse(numeroFactura.Text));
+                comando.Parameters.AddWithValue("@idFacturaCompra", int.Parse(numeroFactura.Text));
 
                 MySqlDataReader reader = comando.ExecuteReader();
 
@@ -286,7 +226,7 @@ namespace Sistema_de_ventas_y_stock___BD.CL
                 {
                     string nombreProducto = reader["nombre"].ToString();
                     int cantidad = reader.GetInt32("cantidad");
-                    double precioVenta = reader.GetDouble("precioVenta");
+                    double precioVenta = reader.GetDouble("precioCompra");
                     double subtotal = cantidad * precioVenta;
 
                     totalFactura += subtotal;
@@ -366,6 +306,58 @@ namespace Sistema_de_ventas_y_stock___BD.CL
                 objetoConexion.Desconectar();
             }
 
+        }
+
+        public void buscarFacturaMostrarDatosProveedor(TextBox numeroFactura, Label numeroFacturaEncontrado, Label fechaFacturaEncontrado,
+                                                       Label nombreProveedorEncontrado, Label direccionProveedorEncontrado, Label telefonoProveedorEncontrado
+                                                       , Label emailProveedorEncontrado)
+        {
+            CD.Conexion objetoConexion = new CD.Conexion();
+
+            string consulta = "SELECT facturacompra.idFacturaCompra, facturacompra.fechaFacturaCompra, proveedor.nombre, proveedor.direccion, proveedor.telefono, proveedor.email " +
+    "FROM facturacompra " +
+    "INNER JOIN proveedor ON proveedor.idproveedor = facturacompra.fkProveedor " +
+    "WHERE facturacompra.idFacturaCompra = @idFacturaCompra;";
+
+            try
+            {
+                MySqlConnection conexion = objetoConexion.Conectar();
+
+                MySqlCommand comando = new MySqlCommand(consulta, conexion);
+                comando.Parameters.AddWithValue("@idFacturaCompra", int.Parse(numeroFactura.Text));
+
+                MySqlDataReader reader = comando.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    numeroFacturaEncontrado.Text = reader["idFacturaCompra"].ToString();
+                    fechaFacturaEncontrado.Text = DateTime.Parse(reader["fechaFacturaCompra"].ToString()).ToString("dd-MM-yyyy");
+                    nombreProveedorEncontrado.Text = reader["nombre"].ToString();
+                    direccionProveedorEncontrado.Text = reader["direccion"].ToString();
+                    telefonoProveedorEncontrado.Text = reader["telefono"].ToString();
+                    emailProveedorEncontrado.Text = reader["email"].ToString();
+
+                }
+                else
+                {
+                    numeroFacturaEncontrado.Text = "----";
+                    fechaFacturaEncontrado.Text = "----";
+                    nombreProveedorEncontrado.Text = "----";
+                    direccionProveedorEncontrado.Text = "----";
+                    telefonoProveedorEncontrado.Text = "----";
+                    emailProveedorEncontrado.Text = "----";
+
+                    MessageBox.Show("No se encontró la factura con el número: ");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar factura: " + ex.ToString());
+            }
+            finally
+            {
+                objetoConexion.Desconectar();
+            }
         }
     }
 }

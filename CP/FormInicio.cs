@@ -48,5 +48,17 @@ namespace Sistema_de_ventas_y_stock___BD
             CP.FormProveedor objetoformProveedor = new CP.FormProveedor();
             objetoformProveedor.Show();
         }
+
+        private void cOMPRASToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CP.FormDetalleCompra objetoformDetalleCompra = new CP.FormDetalleCompra();
+            objetoformDetalleCompra.Show();
+        }
+
+        private void buscarComprobanteCompraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CP.FormFacturaCompra formFacturaCompra = new CP.FormFacturaCompra();
+            formFacturaCompra.Show();
+        }
     }
 }

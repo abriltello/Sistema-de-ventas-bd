@@ -379,50 +379,50 @@ namespace Sistema_de_ventas_y_stock___BD.CL
            
             string consultaDetalle = "insert into detalle (fkFactura, fkProducto, cantidad, precioVenta) values ((select max(idFactura) from factura),@fkProducto,@cantidad,@precioVenta);";
             string consultaStock = "update producto set stock = stock - @cantidad where idproducto = @idproducto;";
-
+            
             try
             {
                 MySqlConnection conexion = objetoConexion.Conectar();
 
-                MySqlCommand comandoDetalle = new MySqlCommand(consultaDetalle, conexion);
-                MySqlCommand comandoStock = new MySqlCommand(consultaStock, conexion);
+                        MySqlCommand comandoDetalle = new MySqlCommand(consultaDetalle, conexion);
+                        MySqlCommand comandoStock = new MySqlCommand(consultaStock, conexion);
                
-                foreach (DataGridViewRow row in tablaCarritoVenta.Rows)
-                {
-                    if (row.Cells[0].Value != null)
-                    {
-                        int idProducto = Convert.ToInt32(row.Cells[0].Value);
-                        int cantidad = Convert.ToInt32(row.Cells[3].Value);
-                        double precioVenta = Convert.ToDouble(row.Cells[2].Value);
+                        foreach (DataGridViewRow row in tablaCarritoVenta.Rows)
+                        {
+                            if (row.Cells[0].Value != null)
+                            {
+                                int idProducto = Convert.ToInt32(row.Cells[0].Value);
+                                int cantidad = Convert.ToInt32(row.Cells[3].Value);
+                                double precioVenta = Convert.ToDouble(row.Cells[2].Value);
 
-                        comandoDetalle.Parameters.Clear();
-                        comandoDetalle.Parameters.AddWithValue("@fkProducto", idProducto);
-                        comandoDetalle.Parameters.AddWithValue("@cantidad", cantidad);
-                        comandoDetalle.Parameters.AddWithValue("@precioVenta", precioVenta);
+                                comandoDetalle.Parameters.Clear();
+                                comandoDetalle.Parameters.AddWithValue("@fkProducto", idProducto);
+                                comandoDetalle.Parameters.AddWithValue("@cantidad", cantidad);
+                                comandoDetalle.Parameters.AddWithValue("@precioVenta", precioVenta);
 
-                        comandoDetalle.ExecuteNonQuery();
+                                comandoDetalle.ExecuteNonQuery();
 
-                        comandoStock.Parameters.Clear();
-                        comandoStock.Parameters.AddWithValue("@cantidad", cantidad);
-                        comandoStock.Parameters.AddWithValue("@idProducto", idProducto);
+                                comandoStock.Parameters.Clear();
+                                comandoStock.Parameters.AddWithValue("@cantidad", cantidad);
+                                comandoStock.Parameters.AddWithValue("@idProducto", idProducto);
 
-                        comandoStock.ExecuteNonQuery();
+                                comandoStock.ExecuteNonQuery();
 
+                            }
+                        }
+
+                        MessageBox.Show("Venta realizada");
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al realizar la venta: " + ex.ToString());
+                    }
+                    finally // para cerrar la conexion
+                    {
+                        objetoConexion.Desconectar();
+                    }
+
                 }
-
-                MessageBox.Show("Venta realizada");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al realizar la venta: " + ex.ToString());
-            }
-            finally // para cerrar la conexion
-            {
-                objetoConexion.Desconectar();
-            }
-
-        }
         
         public void limpiarCamposAlPagar(TextBox buscarCliente, DataGridView tablaCliente, TextBox buscarProducto, DataGridView tablaProducto, DataGridView tablaCarrito, TextBox idCliente, TextBox nombres, TextBox dni, TextBox telefono, TextBox email, TextBox idProducto, TextBox nombreProducto, TextBox precioProducto, TextBox stockProducto, TextBox cantidadProducto, Label totalPagar, TextBox precioVenta)
         {

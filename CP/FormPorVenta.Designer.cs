@@ -129,6 +129,7 @@
             this.dgvSelecCliente.Size = new System.Drawing.Size(626, 123);
             this.dgvSelecCliente.TabIndex = 14;
             this.dgvSelecCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSelecCliente_CellClick);
+            this.dgvSelecCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSelecCliente_CellContentClick);
             // 
             // btnBuscarRep
             // 
@@ -140,6 +141,7 @@
             this.btnBuscarRep.TabIndex = 13;
             this.btnBuscarRep.Text = "BUSCAR";
             this.btnBuscarRep.UseVisualStyleBackColor = false;
+            this.btnBuscarRep.Click += new System.EventHandler(this.btnBuscarRep_Click);
             // 
             // txtBuscarF
             // 
@@ -209,6 +211,7 @@
             this.btnBuscarProd.TabIndex = 13;
             this.btnBuscarProd.Text = "BUSCAR";
             this.btnBuscarProd.UseVisualStyleBackColor = false;
+            this.btnBuscarProd.Click += new System.EventHandler(this.btnBuscarProd_Click);
             // 
             // txtBuscarProd
             // 

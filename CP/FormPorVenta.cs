@@ -41,6 +41,7 @@ namespace Sistema_de_ventas_y_stock___BD.CP
             CL.Venta objetoVenta = new CL.Venta();
             objetoVenta.buscarCliente(txtBuscarF, dgvSelecCliente);
         } 
+
         private void dgvSelecCliente_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             CL.Venta objetoVenta = new CL.Venta();
@@ -96,6 +97,21 @@ namespace Sistema_de_ventas_y_stock___BD.CP
         }
 
         private void FormPorVenta_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBuscarRep_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvSelecCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnBuscarProd_Click(object sender, EventArgs e)
         {
 
         }
